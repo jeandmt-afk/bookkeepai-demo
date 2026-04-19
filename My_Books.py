@@ -3,10 +3,12 @@ import pandas as pd
 from datetime import date
 from database import create_all_tables, add_transaction, get_all_transactions, delete_transaction
 from classifier import classify_transaction
-from auth import register_user, login_user
+from auth import register_user, login_user, user_exists
 
 st.set_page_config(page_title="BookkeepAI", layout="wide")
 create_all_tables()
+if not user_exists("demo@bookkeepai.com"):
+    register_user("Demo User", "demo@bookkeepai.com", "demo123")
 
 if "user" not in st.session_state:
     st.session_state.user = None
