@@ -187,42 +187,25 @@ def render_auth_page():
     left, center, right = st.columns([1, 1.2, 1])
 
     with center:
-        open_glass_card("Access", "Login or create an account")
+        open_glass_card("Access", "Login only for demo access")
+
         login_tab = st.tabs(["Login"])[0]
 
-with login_tab:
-    with st.form("login_form"):
-        login_email = st.text_input("Email")
-        login_password = st.text_input("Password", type="password")
-        login_submitted = st.form_submit_button("Login")
+        with login_tab:
+            with st.form("login_form"):
+                login_email = st.text_input("Email")
+                login_password = st.text_input("Password", type="password")
+                login_submitted = st.form_submit_button("Login")
 
-        if login_submitted:
-            success, result = login_user(login_email, login_password)
-            if success:
-                st.session_state.user = result
-                st.success(f"Welcome back, {result['full_name']}!")
-                st.rerun()
-            else:
-                st.error(result)
-
-        with signup_tab:
-            with st.form("signup_form"):
-                full_name = st.text_input("Full Name")
-                email = st.text_input("Email")
-                password = st.text_input("Password", type="password")
-                confirm_password = st.text_input("Confirm Password", type="password")
-                signup_submitted = st.form_submit_button("Create Account")
-
-                if signup_submitted:
-                    if password != confirm_password:
-                        st.error("Passwords do not match.")
+                if login_submitted:
+                    success, result = login_user(login_email, login_password)
+                    if success:
+                        st.session_state.user = result
+                        st.success(f"Welcome back, {result['full_name']}!")
+                        st.rerun()
                     else:
-                        success, message = register_user(full_name, email, password)
-                        if success:
-                            st.success(message)
-                            st.info("Your account has been created. You can now log in.")
-                        else:
-                            st.error(message)
+                        st.error(result)
+
         close_glass_card()
 
 
