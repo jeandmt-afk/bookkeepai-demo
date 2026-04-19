@@ -190,20 +190,20 @@ def render_auth_page():
         open_glass_card("Access", "Login or create an account")
         login_tab = st.tabs(["Login"])[0]
 
-        with login_tab:
-            with st.form("login_form"):
-                login_email = st.text_input("Email")
-                login_password = st.text_input("Password", type="password")
-                login_submitted = st.form_submit_button("Login")
+with login_tab:
+    with st.form("login_form"):
+        login_email = st.text_input("Email")
+        login_password = st.text_input("Password", type="password")
+        login_submitted = st.form_submit_button("Login")
 
-                if login_submitted:
-                    success, result = login_user(login_email, login_password)
-                    if success:
-                        st.session_state.user = result
-                        st.success(f"Welcome back, {result['full_name']}!")
-                        st.rerun()
-                    else:
-                        st.error(result)
+        if login_submitted:
+            success, result = login_user(login_email, login_password)
+            if success:
+                st.session_state.user = result
+                st.success(f"Welcome back, {result['full_name']}!")
+                st.rerun()
+            else:
+                st.error(result)
 
         with signup_tab:
             with st.form("signup_form"):
