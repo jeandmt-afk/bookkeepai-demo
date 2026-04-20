@@ -7,6 +7,8 @@ from auth import register_user, login_user, user_exists
 
 st.set_page_config(page_title="BookkeepAI", layout="wide")
 create_all_tables()
+
+# Demo account for public testing
 if not user_exists("demo@bookkeepai.com"):
     register_user("Demo User", "demo@bookkeepai.com", "demo123")
 
@@ -101,14 +103,37 @@ def inject_premium_css():
         transform: translateY(-1px);
     }
 
+    /* Safer cross-device input styling */
     .stTextInput input,
     .stNumberInput input,
     .stDateInput input,
-    .stTextArea textarea {
-        background: rgba(255,255,255,0.04) !important;
+    .stTextArea textarea,
+    input,
+    textarea {
+        background-color: rgba(12, 17, 28, 0.92) !important;
         color: #ffffff !important;
+        -webkit-text-fill-color: #ffffff !important;
+        caret-color: #ffffff !important;
         border-radius: 14px !important;
-        border: 1px solid rgba(255,255,255,0.08) !important;
+        border: 1px solid rgba(255,255,255,0.14) !important;
+        opacity: 1 !important;
+    }
+
+    input::placeholder,
+    textarea::placeholder {
+        color: rgba(255,255,255,0.55) !important;
+        -webkit-text-fill-color: rgba(255,255,255,0.55) !important;
+    }
+
+    input:-webkit-autofill,
+    input:-webkit-autofill:hover,
+    input:-webkit-autofill:focus,
+    textarea:-webkit-autofill,
+    select:-webkit-autofill {
+        -webkit-text-fill-color: #ffffff !important;
+        -webkit-box-shadow: 0 0 0px 1000px rgba(12, 17, 28, 0.92) inset !important;
+        transition: background-color 9999s ease-in-out 0s;
+        caret-color: #ffffff !important;
     }
 
     div[data-baseweb="select"] > div {
