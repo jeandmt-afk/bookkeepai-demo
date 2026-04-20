@@ -33,10 +33,13 @@ streamlit run My_Books.py
 
 ## 🔑 Demo Access
 
+Click the link below: 
+https://bookkeepai-demo-kggoknvg8vejfsuyappj3ty.streamlit.app/
+
 Use this demo account:
 
-Email: marcuz.munoz05@gmail.com
-Password: password123
+Email: demo@bookkeepai.com
+Password: demo123
 
 ---
 
